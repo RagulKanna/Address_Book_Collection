@@ -67,13 +67,7 @@ class Addressbookoptions
             ContactdetailsArray[item]=new Contactdetails(first,last,address,city,state,zip,phonenumber,email);
         }
 
-    public void delete(int e)
-    {
-        for(int i=e;i<entries-1;i++) {
-            int j=i+1;
-            ContactdetailsArray[i] = ContactdetailsArray[j];
-        }
-    }
+
 }
 
 public class Addressbook {
@@ -91,7 +85,7 @@ public class Addressbook {
             System.out.println("1.Add the contact...");
             System.out.println("2.Display the contact....");
             System.out.println("3.Edit the contact...");
-            System.out.println("4.Delete the contact...");
+
 
 
 
@@ -193,38 +187,7 @@ public class Addressbook {
                 }
                 break;
 
-                case 4: {
-                    if (members == 0)
-                        System.out.println("\n There is no contact to delete!!!!");
-                    else {
-                        option.display(members);
 
-
-                        int e;
-                        int flag = 0;
-
-                        for (int j = 0; j < members; j++) {
-                            System.out.print("\n\nWhich person's detail you want delete: ");
-                            String name = s.next();
-                            if (name.equals(namelist[j])) {
-                                e = j;
-                                option.delete(e);
-                                j = members + 1;
-                                flag = 1;
-                                for (int k = e; k < members - 1; k++) {
-                                    namelist[k] = namelist[k + 1];
-                                }
-                            }
-
-                        }
-
-                        if(flag==1)
-                        members--;
-                        else
-                            System.out.println("\n enter correct name!!!!");
-                    }
-                }
-                break;
 
             }
             System.out.print("\n\nDo you want to continue press 'y' else 'n':" );
