@@ -64,6 +64,7 @@ class Addressbookoptions
         }
     }
 
+
 }
 public class Addressbook {
 
@@ -79,6 +80,8 @@ public class Addressbook {
             System.out.println("\n\n Here are some option for addressbook");
             System.out.println("1.Add the contact...");
             System.out.println("2.Display the contact....");
+
+
 
             System.out.print("\n\n Enter the choice What you want to do: ");
             int choice = s.nextInt();
@@ -117,19 +120,22 @@ public class Addressbook {
 
                         members++;
                     }
-                    System.out.println("\n"+members+" contact are created...");
+                    System.out.println("\n" + members + " contact are created...");
                 }
                 break;
 
 
                 case 2: {
-                    if(members == 0)
+                    if (members == 0)
                         System.out.println("\n There is no contact to display");
                     else {
                         option.display(members);
                     }
                 }
                 break;
+
+
+
             }
             System.out.print("\n\nDo you want to continue press 'y' else 'n':" );
             char ch =s.next().charAt(0);
