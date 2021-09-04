@@ -1,88 +1,22 @@
 package oopsconcept;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
-class Contactdetails
-{
-    public String firstname;
-    public String lastname;
-    public String address;
-    public String city;
-    public String state;
-    public int zip;
-    public long phonenumber;
-    public String email;
+
+class AddressBook {
+    ArrayList<ContactDetails> contactdetails =new ArrayList<ContactDetails>();
 
 
-     Contactdetails(String first,String last,String address,String city,String state,int zip,long phonenumber,String email)
-    {
-        this.firstname= first;
-        this.lastname= last;
-        this.address=address;
-        this.city=city;
-        this.state=state;
-        this.zip=zip;
-        this.phonenumber=phonenumber;
-        this.email=email;
-    }
-
-}
-
-class Addressbookoptions
-{
-
-    int entries=0;
-    Contactdetails[] ContactdetailsArray;
-
-    Addressbookoptions()
-    {
-        ContactdetailsArray = new Contactdetails[5];
-    }
-
-    public void add(String first, String last, String address, String city, String state, int zip, long phonenumber, String email)
-    {
-            ContactdetailsArray[entries]=new Contactdetails(first,last,address,city,state,zip,phonenumber,email);
-            entries++;
-    }
-
-    public void display(int items) {
-        System.out.println("\n\nDisplaying  the contact details....");
-        for (int i = 0; i < items; i++) {
-            int j = i + 1;
-            System.out.println("\n\nThe entry " + j + " is Contact detail of " + ContactdetailsArray[i].firstname);
-            System.out.print("\nFirst name: " + ContactdetailsArray[i].firstname);
-            System.out.print("\nLast name: " + ContactdetailsArray[i].lastname);
-            System.out.print("\nAddress: " + ContactdetailsArray[i].address);
-            System.out.print("\nCity: " + ContactdetailsArray[i].city);
-            System.out.print("\nState: " + ContactdetailsArray[i].state);
-            System.out.print("\nzip: " + ContactdetailsArray[i].zip);
-            System.out.print("\nPhone number: " + ContactdetailsArray[i].phonenumber);
-            System.out.print("\nEmailId: " + ContactdetailsArray[i].email);
-
-        }
-    }
-
-        public void edit(int item,String first, String last, String address, String city, String state, int zip, long phonenumber, String email)
-        {
-            ContactdetailsArray[item]=new Contactdetails(first,last,address,city,state,zip,phonenumber,email);
-        }
-
-    public void delete(int e)
-    {
-        for(int i=e;i<entries-1;i++) {
-            int j=i+1;
-            ContactdetailsArray[i] = ContactdetailsArray[j];
-        }
-    }
-
-}
-
-public class Addressbook {
 
     public static void main(String[] args) {
 
+
+
         Scanner s = new Scanner(System.in);
-        Addressbookoptions option = new Addressbookoptions();
+        AddressBook option = new AddressBook();
+
         String[] namelist = new String[5];
         int members = 0;
         char ans;
@@ -106,16 +40,16 @@ public class Addressbook {
                     int contact = s.nextInt();
 
                     for (int i = 0; i < contact; i++) {
-                        String first, last, address, email, city, state;
+                        String firstname, lastname, address, email, city, state;
                         int zip;
                         long phonenumber;
                         int entrynumber = i + 1;
                         System.out.println("\nThe Entry number is " + entrynumber);
                         System.out.print("\nEnter the First name: ");
-                        first = s.next();
-                        namelist[i] = first;
+                        firstname = s.next();
+                        namelist[i] = firstname;
                         System.out.print("\nEnter the Last name: ");
-                        last = s.next();
+                        lastname = s.next();
                         System.out.print("\nEnter the Address: ");
                         address = s.next();
                         System.out.print("\nEnter the city: ");
@@ -128,9 +62,9 @@ public class Addressbook {
                         phonenumber = s.nextLong();
                         System.out.print("\nEnter the EmailID: ");
                         email = s.next();
-                        option.add(first, last, address, city, state, zip, phonenumber, email);
+                        option.add(firstname, lastname, address, city, state, zip, phonenumber, email);
 
-                        System.out.println("\n" + first + "'s Contact added successfully!!!");
+                        System.out.println("\n" + firstname + "'s Contact added successfully!!!");
 
                         members++;
                     }
@@ -143,7 +77,7 @@ public class Addressbook {
                     if (members == 0)
                         System.out.println("\n There is no contact to display");
                     else {
-                        option.display(members);
+                        option.display();
                     }
                 }
                 break;
@@ -153,27 +87,27 @@ public class Addressbook {
                     if(members == 0)
                         System.out.println("\n There is no contact to edit!!!!");
                     else {
-                        option.display(members);
+                        option.display();
 
                         int e = 0;
                         int flag=0;
-
+                        System.out.print("\n\nWhich person's detail you want edit: ");
+                        String name = s.next();
                         for (int j = 0; j < members; j++) {
-                            System.out.print("\n\nWhich person's detail you want edit: ");
-                            String name = s.next();
+
                             if (name.equals(namelist[j])){
                                 e = j;
                                 j = members + 1;
                                 flag=1;
-                                String first, last, address, email, city, state;
+                                String firstname, lastname, address, email, city, state;
                                 int zip;
                                 long phonenumber;
                                 System.out.println("\n\n Enter the details to edit :");
                                 System.out.print("\nEnter the First name: ");
-                                first = s.next();
-                                namelist[e] = first;
+                                firstname = s.next();
+                                namelist[e] = firstname;
                                 System.out.print("\nEnter the Last name: ");
-                                last = s.next();
+                                lastname = s.next();
                                 System.out.print("\nEnter the Address: ");
                                 address = s.next();
                                 System.out.print("\nEnter the city: ");
@@ -186,7 +120,7 @@ public class Addressbook {
                                 phonenumber = s.nextLong();
                                 System.out.print("\nEnter the EmailID: ");
                                 email = s.next();
-                                option.edit(e, first, last, address, city, state, zip, phonenumber, email);
+                                option.edit(e,firstname, lastname, address, city, state, zip, phonenumber, email);
                             }
                         }
                         if(flag == 0)
@@ -199,29 +133,30 @@ public class Addressbook {
                     if (members == 0)
                         System.out.println("\n There is no contact to delete!!!!");
                     else {
-                        option.display(members);
+                        option.display();
 
 
-                        int e;
+                        int e=0;
                         int flag = 0;
-
+                        System.out.print("\n\nWhich person's detail you want delete: ");
+                        String name = s.next();
                         for (int j = 0; j < members; j++) {
-                            System.out.print("\n\nWhich person's detail you want delete: ");
-                            String name = s.next();
+
                             if (name.equals(namelist[j])) {
+
                                 e = j;
-                                option.delete(e);
                                 j = members + 1;
-                                flag = 1;
+                                flag=1;
+                                option.delete(e);
                                 for (int k = e; k < members - 1; k++) {
                                     namelist[k] = namelist[k + 1];
                                 }
                             }
-
                         }
 
+
                         if(flag==1)
-                            members--;
+                            System.out.println("\ndeleted successfully!!!!");
                         else
                             System.out.println("\n enter correct name!!!!");
                     }
@@ -235,5 +170,40 @@ public class Addressbook {
         }while(ans == 'y');
 
     }
-}
 
+    public void add(String firstname, String lastname, String address, String city, String state, int zip, long phonenumber, String email)
+    {
+        ContactDetails details=new ContactDetails(firstname, lastname, address, city, state, zip, phonenumber, email);
+        contactdetails.add(details);
+
+
+    }
+
+    public void display() {
+        System.out.println("\n\nDisplaying  the contact details....");
+        Iterator itr=contactdetails.iterator();
+        while(itr.hasNext()){
+            ContactDetails details=(ContactDetails) itr.next();
+            System.out.print("\n\nFirst name: " + details.getFirstname());
+            System.out.print("\nLast name: " + details.getLastname());
+            System.out.print("\nAddress: " + details.getAddress());
+            System.out.print("\nCity: " + details.getCity());
+            System.out.print("\nState: " + details.getState());
+            System.out.print("\nzip: " + details.getZip());
+            System.out.print("\nPhone number: " + details.getPhonenumber());
+            System.out.print("\nEmailId: " + details.getEmail());
+        }
+    }
+
+    public void edit(int index,String firstname, String lastname, String address, String city, String state, int zip, long phonenumber, String email)
+    {
+        contactdetails.set(index,new ContactDetails(firstname, lastname, address, city, state, zip, phonenumber, email));
+
+    }
+
+    public void delete(int e)
+    {
+        contactdetails.remove(e);
+    }
+
+}
