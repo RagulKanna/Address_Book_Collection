@@ -1,12 +1,15 @@
 package oopsconcept;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
+
+
+import java.util.*;
 
 
 class AddressBook {
     ArrayList<ContactDetails> contactdetails =new ArrayList<ContactDetails>();
+    public static Map<String,ContactDetails> contactDetailsMap = new HashMap<String,ContactDetails>();
+    public static int entries=0;
+
 
 
 
@@ -19,6 +22,7 @@ class AddressBook {
 
         String[] namelist = new String[5];
         int members = 0;
+
         char ans;
 
         do {
@@ -41,8 +45,8 @@ class AddressBook {
 
                     for (int i = 0; i < contact; i++) {
                         String firstname, lastname, address, email, city, state;
-                        int zip;
-                        long phonenumber;
+                        Integer zip;
+                        Long phonenumber;
                         int entrynumber = i + 1;
                         System.out.println("\nThe Entry number is " + entrynumber);
                         System.out.print("\nEnter the First name: ");
@@ -164,17 +168,22 @@ class AddressBook {
                 break;
 
             }
+
             System.out.print("\n\nDo you want to continue press 'y' else 'n':" );
             char ch =s.next().charAt(0);
             ans=ch;
+            option.map();
         }while(ans == 'y');
+
 
     }
 
-    public void add(String firstname, String lastname, String address, String city, String state, int zip, long phonenumber, String email)
-    {
-        ContactDetails details=new ContactDetails(firstname, lastname, address, city, state, zip, phonenumber, email);
+    public void add(String firstname, String lastname, String address, String city, String state, int zip, long phonenumber, String email) {
+        ContactDetails details = new ContactDetails(firstname, lastname, address, city, state, zip, phonenumber, email);
         contactdetails.add(details);
+        entries++;
+
+
 
 
     }
@@ -192,6 +201,10 @@ class AddressBook {
             System.out.print("\nzip: " + details.getZip());
             System.out.print("\nPhone number: " + details.getPhonenumber());
             System.out.print("\nEmailId: " + details.getEmail());
+
+            System.out.println("\n\nMapping of the contact details:");
+            System.out.println("Map:"+contactDetailsMap);
+
         }
     }
 
@@ -206,4 +219,13 @@ class AddressBook {
         contactdetails.remove(e);
     }
 
+    public void map()
+    {
+        for (int i = 0; i < entries; i++)
+        {
+            contactDetailsMap.put(contactdetails.get(i).getFirstname(),contactdetails.get(i));
+        }
+    }
+
 }
+

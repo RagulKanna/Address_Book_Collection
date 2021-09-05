@@ -1,6 +1,7 @@
 package oopsconcept;
 
-public class ContactDetails {
+class ContactDetails
+{
     private  String firstname;
     private String lastname;
     private String address;
@@ -28,9 +29,10 @@ public class ContactDetails {
         return firstname;
     }
 
-    public void setFirstname(String firstname)
+    public String setFirstname(String firstname)
     {
         this.firstname=firstname;
+        return firstname;
     }
 
     public String getLastname()
@@ -38,9 +40,10 @@ public class ContactDetails {
         return lastname;
     }
 
-    public void setLastname(String lastname)
+    public String setLastname(String lastname)
     {
         this.lastname=lastname;
+        return lastname;
     }
 
     public String getAddress()
@@ -48,9 +51,10 @@ public class ContactDetails {
         return address;
     }
 
-    public void setAddress(String address)
+    public String setAddress(String address)
     {
         this.address=address;
+        return address;
     }
 
     public String getCity()
@@ -58,9 +62,10 @@ public class ContactDetails {
         return city;
     }
 
-    public void setCity(String city)
+    public String setCity(String city)
     {
         this.city=city;
+        return city;
     }
 
     public String getState()
@@ -68,9 +73,10 @@ public class ContactDetails {
         return state;
     }
 
-    public void setState(String state)
+    public String setState(String state)
     {
         this.state=state;
+        return state;
     }
 
     public int getZip()
@@ -78,9 +84,10 @@ public class ContactDetails {
         return zip;
     }
 
-    public void setZip(int zip)
+    public int setZip(int zip)
     {
         this.zip=zip;
+        return zip;
     }
 
     public long getPhonenumber()
@@ -88,9 +95,10 @@ public class ContactDetails {
         return phonenumber;
     }
 
-    public void setPhonenumber(int phonenumber)
+    public long setPhonenumber(long phonenumber)
     {
         this.phonenumber=phonenumber;
+        return phonenumber;
     }
 
     public String getEmail()
@@ -98,9 +106,23 @@ public class ContactDetails {
         return email;
     }
 
-    public void setEmail(String email)
+    public String setEmail(String email)
     {
         this.email=email;
+        return email;
+    }
+
+    public String toString(){
+        return "ContactDetails{" +
+                "FirstName='" + firstname + '\'' +
+                ", Lastname=" + lastname +
+                ", Address=" + address +
+                ", City=" +city +
+                ", State=" + state +
+                ", Zip ="+ zip +
+                ", PhoneNumber="+phonenumber+
+                ",Email="+email+
+                '}';
     }
 
 }
