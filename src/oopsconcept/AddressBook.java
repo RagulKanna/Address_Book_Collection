@@ -276,7 +276,7 @@ class AddressBook {
                     }
                 }
                 if (noentry == 0)
-                    System.out.println("\nNo entries are there...");
+                    System.out.println("\nNo entries are there.....");
             }
             break;
 
@@ -298,7 +298,7 @@ class AddressBook {
                     }
                 }
                 if (noentry == 0)
-                    System.out.println("\nNo entries are there...");
+                    System.out.println("\nNo entries are there.....");
             }
             break;
         }
